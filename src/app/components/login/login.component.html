@@ -1,0 +1,69 @@
+<!-- <h1>wolcome to our site</h1>
+<h3>please enter your details</h3>
+
+<form [formGroup]="this.loginForm">
+  <div>
+    <label>שם</label>
+    <input type="text" formControlName="name" />
+    <ng-container *ngIf="this.loginForm.controls['name'].errors as nameError">
+      <p appHightLight *ngIf="nameError['required']"> זהו שדה חובה  </p>
+      <p *ngIf="nameError['minlength']">
+        this field is must at least 3 latters
+      </p>
+    </ng-container>
+  </div>
+  <br />
+  <div>
+    <label>סיסמה</label>
+    <input type="text" formControlName="password" />
+    <ng-container
+      *ngIf="this.loginForm.controls['password'].errors as passwordError"
+    >
+      <p *ngIf="passwordError['required']"> זהו שדה חובה </p>
+    </ng-container>
+  </div>
+  <button (click)="OnClickEnter()" [disabled]="!this.loginForm.valid">
+    לכניסה
+  </button>
+</form>
+
+<div *ngIf="errorMessage">
+  {{ errorMessage }}
+</div> -->
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <h1 class="text-center mb-4" style="color: #953b33;">ברוכים הבאים לאתר המתכונים שלנו</h1>
+      <h3 class="text-center mb-4" style="color: #953b33;">אנא הזינו את הפרטים שלכם</h3>
+      <form [formGroup]="this.loginForm" class="mb-4">
+        <div class="form-group">
+          <label for="name" class="float-right" style="color: #953b33;">שם</label>
+          <input type="text" id="name" class="form-control form-control-sm" formControlName="name" style="box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2); border-color: black;" />
+          <div *ngIf="loginForm.controls['name'].invalid && loginForm.controls['name'].touched" class="text-danger">
+            <ng-container *ngIf="loginForm.controls['name'].errors">
+              <ng-container *ngIf="loginForm.controls['name'].errors['required']">
+                זהו שדה חובה
+              </ng-container>
+              <ng-container *ngIf="loginForm.controls['name'].errors['minlength']">
+                השדה חייב להכיל לפחות 3 אותיות
+              </ng-container>
+            </ng-container>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="password" class="float-right" style="color: #953b33;">סיסמה</label>
+          <input type="password" id="password" class="form-control form-control-sm" formControlName="password" style="box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2); border-color: black;" />
+          <div *ngIf="loginForm.controls['password'].invalid && loginForm.controls['password'].touched" class="text-danger">
+            <ng-container *ngIf="loginForm.controls['password'].errors">
+              <ng-container *ngIf="loginForm.controls['password'].errors['required']">
+                זהו שדה חובה
+              </ng-container>
+            </ng-container>
+          </div>
+        </div>
+        <button type="submit" class="btn btn-sm mt-3" [disabled]="!loginForm.valid" style="background-color: #000000; color: #fff; box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3); margin-top: 10px;" (click)="OnClickEnter()">לכניסה</button>
+      </form>
+      <div *ngIf="errorMessage" class="text-danger">{{ errorMessage }}</div>
+    </div>
+  </div>
+</div>

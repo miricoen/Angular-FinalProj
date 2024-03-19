@@ -1,0 +1,6 @@
+/* עיצוב לאינפוט בעת קבלת פוקוס */
+.form-control:focus {
+    border-color: black; /* צבע הגבולות בעת פוקוס */
+    box-shadow: 0 0 0 0.2rem black; /* צללית בעת פוקוס */
+  }
+  

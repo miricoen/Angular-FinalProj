@@ -1,0 +1,41 @@
+<div class="container">
+    <h2>עריכת מתכון</h2>
+    <form [formGroup]="editRecipeForm" (ngSubmit)="saveChanges()">
+      <div class="mb-3">
+        <label for="name" class="form-label">שם המתכון</label>
+        <input type="text" class="form-control" id="name" formControlName="name" required>
+      </div>
+      <!-- כאן יהיה סלקטור לבחירת הקטגוריה והוספת עריכה שלה -->
+      <div class="mb-3">
+        <label for="preparationTime" class="form-label">זמן הכנה (בדקות)</label>
+        <input type="number" class="form-control" id="preparationTime" formControlName="preparationTime" required>
+      </div>
+      <div class="mb-3">
+        <label for="level" class="form-label">רמת קושי</label>
+        <input type="number" class="form-control" id="level" formControlName="level" required>
+      </div>
+      <div class="mb-3">
+        <label for="image" class="form-label">תמונה</label>
+        <input type="url" class="form-control" id="image" formControlName="image" required>
+      </div>
+      <div formArrayName="products">
+        <div *ngFor="let product of products.controls; let i = index" class="mb-3">
+          <label class="form-label">רכיב {{ i + 1 }}</label>
+          <input type="text" class="form-control" [formControlName]="i" required>
+          <button type="button" class="btn btn-danger" (click)="removeProduct(i)">הסר רכיב</button>
+        </div>
+      </div>
+      <button type="button" class="btn btn-primary" (click)="addProduct()">הוסף רכיב</button>
+      <div formArrayName="instructions">
+        <div *ngFor="let instruction of instructions.controls; let i = index" class="mb-3">
+          <label class="form-label">שלב {{ i + 1 }}</label>
+          <textarea class="form-control" [formControlName]="i" required></textarea>
+          <button type="button" class="btn btn-danger" (click)="removeInstruction(i)">הסר שלב</button>
+        </div>
+      </div>
+      <button type="button" class="btn btn-primary" (click)="addInstruction()">הוסף שלב</button>
+      <button type="submit" class="btn btn-success" (click)="saveChanges()">שמור שינויים</button>
+      <button type="button" class="btn btn-secondary" (click)="cancel()">בטל</button>
+    </form>
+  </div>
+  

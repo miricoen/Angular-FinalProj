@@ -1,0 +1,59 @@
+<!-- <input type="text" placeholder="הזן שם לסינון" [(ngModel)]="recipeNameFilter">
+<button (click)="filterRecipesByName()">סנן </button>
+
+<div>
+  <input type="number" [(ngModel)]="preparationTimeFilter" placeholder="Filter by preparation time">
+  <button (click)="filterByPreparationTime()">סנן</button>
+</div>
+
+<div>
+  <label for="category">Category</label>
+  <select id="category" [(ngModel)]="selectedCategory" (change)="filterByCategory()">
+    <option value="">All Categories</option>
+    <option *ngFor="let category of categoryList" [ngValue]="category.id">
+      {{ category.name }}
+    </option>
+  </select>
+</div> -->
+<div class="row">
+  <div class="col-md-4">
+    <div class="input-group">
+      <input type="text" class="form-control border-dark" placeholder="הזן שם לסינון" [(ngModel)]="recipeNameFilter" style="box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2); border-color: black;">
+      <!-- style="box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2); border-color: black;" -->
+      <div class="input-group-append">
+        <button class="btn btn-outline-dark" type="button" style="background-color: #452e19;color: white;" (click)="filterRecipesByName()">סנן</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-4">
+    <div class="input-group">
+      <input type="number" class="form-control border-dark" [(ngModel)]="preparationTimeFilter" placeholder="סנן לפי זמן הכנה"  style="box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2); border-color: black;">
+      <div class="input-group-append">
+        <button class="btn btn-outline-dark" type="button" style="background-color: #452e19;color: white;" (click)="filterByPreparationTime()">סנן</button>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="input-group">
+      <div class="input-group-prepend">
+        <label class="input-group-text border-dark"  for="category" style="background-color:  #452e19; color: white;">קטגוריה</label>
+      </div>
+      <select id="category" class="custom-select border-dark" [(ngModel)]="selectedCategory" (change)="filterByCategory()">
+        <option value="">כל הקטגוריות</option>
+        <option *ngFor="let category of categoryList" [ngValue]="category.id" class="category-option2">
+          {{ category.name }}
+        </option>
+      </select>
+    </div>
+  </div>
+</div>
+
+
+
+<div class="recipe-container ">
+  <div *ngFor="let recipe of ArrRecipe" class="recipe-item">
+    <app-single-recipe [recipeInput]="recipe"></app-single-recipe>
+  </div>
+</div>
+

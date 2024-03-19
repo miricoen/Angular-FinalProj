@@ -1,0 +1,18 @@
+option:focus {
+  background-color: #d2b48c;
+  color: black;
+}
+
+.recipe-container {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: stretch; /* גובה האלמנטים יתמלא כך שישתקעו עד הגובה המרבי של השורה */
+  justify-content: space-between;
+}
+
+div.recipe-item {
+  flex: 1 1 30%; /* התאם את הערכים לפי העיצוב שברצונך */
+  margin: 10px; /* הוסף רווח בין האלמנטים */
+  min-height: 10cm;
+}
+

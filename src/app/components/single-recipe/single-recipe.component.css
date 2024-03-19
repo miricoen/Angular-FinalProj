@@ -1,0 +1,5 @@
+.card{
+   height: 10cm;
+   display: flex;
+   justify-content: space-evenly;
+}

@@ -1,0 +1,57 @@
+<!-- <ng-container *ngIf="recipe">
+  <div>
+    <img src="{{ recipe.image }}" alt="recipe image" />
+    <h6>{{ recipe.name }}</h6>
+    <p>PreparationTime: {{ recipe.preparationTime }}</p>
+    <p>level: {{ recipe.level }}</p>
+    <p>category: {{ categoryForThisRecipe }}</p>
+    <p>products</p>
+    <div *ngFor="let product of recipe.products" class="product">
+      <p>{{ product }}</p>
+    </div>
+    <p>instructions</p>
+    <div *ngFor="let instruction of recipe.instructions" class="instruction">
+      <p>{{ instruction }}</p>
+    </div>
+    <p>user: {{ userForThisRecipe }}</p>
+  </div>
+</ng-container> -->
+
+<div class="container-fluid">
+    <div class="row">
+      <div class="col-md-10 offset-md-1">
+        <div class="row">
+          <div class="col-md-12">
+            <img [src]="recipe.image" class="img-fluid mb-3" style="width: 100%;" alt="recipe image">
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6 offset-md-6">
+            <h2>{{ recipe.name }}</h2>
+            <p style="direction: rtl;"><strong>זמן הכנה:</strong> {{ recipe.preparationTime |  time}}</p>
+            <!-- <p style="direction: rtl;"><strong>רמת קושי:</strong> {{ recipe.level }}</p> -->
+            <p>דרגת קושי:</p>
+            <span *ngFor="let star of [].constructor(recipe.level)">
+              &#9733; <!-- כוכב מלא -->
+            </span>
+            <p style="direction: rtl;"><strong>קטגוריה:</strong> {{ categoryForThisRecipe.name }}
+            <img [src]="categoryForThisRecipe.url" alt="category icon" class="bi" style="font-size: 1.5rem; width: 50px; height: 50px;">
+          </p>
+            <p style="direction: rtl;"><strong>מרכיבים:</strong></p>
+            <ul style="direction: rtl;">
+              <li *ngFor="let product of recipe.products">{{ product }}</li>
+            </ul>
+            <p style="direction: rtl;"><strong>הוראות הכנה:</strong></p>
+            <ol style="direction: rtl;">
+              <li *ngFor="let instruction of recipe.instructions">{{ instruction }}</li>
+            </ol>
+            <button *ngIf="isCurrentUserRecipeOwner()" class="btn btn-danger" (click)="deleteRecipe()">מחק מתכון</button>
+            <button *ngIf="isCurrentUserRecipeOwner()" class="btn btn-danger" (click)="toeditRecipeComponent()">ערוך מתכון</button>
+
+            
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

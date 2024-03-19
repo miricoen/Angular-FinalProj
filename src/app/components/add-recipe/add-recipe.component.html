@@ -1,0 +1,94 @@
+<form [formGroup]="this.addRecipeForm">
+  <div>
+    <label>שם</label>
+    <input type="text" formControlName="Name" />
+    <ng-container
+      *ngIf="this.addRecipeForm.controls['Name'].errors as nameError"
+    >
+      <p appHightLight *ngIf="nameError['required']">זהו שדה חובה</p>
+      <p *ngIf="nameError['minlength']">
+        שדה זה חייב להיות לפחות 3 אותיות
+      </p>
+    </ng-container>
+  </div>
+  <br />
+
+  <label for="category">Category</label>
+  <select id="category" formControlName="selectedCategory">
+    <option *ngFor="let category of categoryList" [value]="category.id">
+      {{ category.name }}
+    </option>
+  </select>
+
+  <div>
+    <label>זמן הכנה</label>
+    <input type="number" formControlName="PreparationTime" />
+    <ng-container
+      *ngIf="this.addRecipeForm.controls['PreparationTime'].errors as PreparationTimeError"
+    >
+      <p *ngIf="PreparationTimeError['required']">זהו שדה חובה</p>
+    </ng-container>
+  </div>
+  <br />
+  <div>
+    <label>Level</label>
+    <input type="number" formControlName="Level" />
+    <ng-container
+      *ngIf="this.addRecipeForm.controls['Level'].errors as LevelError"
+    >
+      <p *ngIf="LevelError['required']">זהו שדה חובה</p>
+      <p *ngIf="LevelError['min']">רמה לא יכולה להיות מתחת 1</p>
+    </ng-container>
+  </div>
+  <br />
+  <div>
+    <label>Image</label>
+    <input type="text" formControlName="Image" />
+    <ng-container
+      *ngIf="
+        this.addRecipeForm.controls['Image'].errors as PreparationTimeError
+      "
+    >
+      <p *ngIf="PreparationTimeError['required']"> זהו שדה חובה </p>
+    </ng-container>
+  </div>
+
+  <div>
+    <label>Products</label>
+    <div formArrayName="Products">
+      <div *ngFor="let product of ProductsArray.controls; let i = index">
+        <input
+          type="text"
+          [formControlName]="i"
+          (input)="addProduct()"
+          *ngIf="
+            i === ProductsArray.length - 1 || ProductsArray.at(i).value !== ''
+          "
+        />
+      </div>
+      <button type="button" (click)="removeEmptyproducts()">finish</button>
+    </div>
+  </div>
+  <br />
+
+  <div>
+    <label>instructions</label>
+    <div formArrayName="Instructions">
+      <div *ngFor="let Instruction of InstructionsArray.controls; let i = index">
+        <input
+          type="text"
+          [formControlName]="i"
+          (input)="addPreparationStep()"
+          *ngIf="
+            i === InstructionsArray.length - 1 || InstructionsArray.at(i).value !== ''
+          "
+        />
+      </div>
+      <button type="button" (click)="removeEmptyPreparationSteps()">finish</button>
+    </div>
+  </div>
+
+  <button (click)="onSubmit()" [disabled]="!this.addPreparationStep">
+  לכניסה
+  </button>
+</form>

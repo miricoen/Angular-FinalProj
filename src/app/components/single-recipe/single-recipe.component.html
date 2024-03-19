@@ -1,0 +1,29 @@
+<!-- <ng-container *ngIf="recipe">
+  <div>
+    <h6>{{ recipe.name }}</h6>
+    <p>PreparationTime: {{ recipe.preparationTime }}</p>
+    <p>level: {{ recipe.level }}</p>
+    <img src="{{ recipe.image }}" alt="recipe image" />
+  </div>
+</ng-container>
+<button >להצגת הפרטים</button>
+
+ -->
+ <ng-container *ngIf="recipeInput">
+  <div class="card bg-light mb-3" style="max-width: 18rem;">
+    <img [src]="recipeInput.image" class="card-img-top" alt="recipe image" style="max-height: 150px;">
+    <div class="card-body text-center"> 
+      <h5 class="card-title">{{ recipeInput.name }}</h5>
+      <p class="card-text"><strong>זמן הכנה:</strong> {{ recipeInput.preparationTime|  time}}</p>
+      <!-- <p class="card-text"><strong>Level:</strong> {{ recipeInput.level }}</p> -->
+      <p>דרגת קושי:</p>
+      <span *ngFor="let star of [].constructor(recipeInput.level)">
+        &#9733; <!-- כוכב מלא -->
+      </span>
+
+      <button class="btn btn-secondary btn-block w-100 mt-3" (click)="ShowRecipeDetails()">למתכון המלא</button>
+    </div>
+  </div>
+</ng-container>
+
+
